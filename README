@@ -5,3 +5,5 @@ It's very similar to what Network Manager does when you request a mobile broadba
 Enter your local Bluetooth MAC address in nap_connect.cfg as my_mac, and the destination Network Access Point MAC address as nap_mac
 
 Execute ./nap_connect.py
+
+The goal of this script is to be able to use it as a pre-up script on Debian, for embedded and minimal systems to use Bluetooth as a Network transport layer
