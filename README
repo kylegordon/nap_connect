@@ -1,3 +1,7 @@
+nap_connect.py
+Created by Kyle Gordon <kyle@lodge.glasgownet.com>
+License: GPL 3
+
 This script will attempt to set up a BNEP network connection over bluetooth from your Linux device to a phone (or any other device that's operating as a Network Access Point.
 
 It's very similar to what Network Manager does when you request a mobile broadband connection over bluetooth, except this doesn't need Network Manager, and is a lot less clever.
