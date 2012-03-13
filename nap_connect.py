@@ -26,28 +26,19 @@ LEVELS = {'debug': logging.DEBUG,
 if debug == 0: logging.basicConfig(filename=LOGFILE,level=logging.INFO)
 if debug == 1: logging.basicConfig(filename=LOGFILE,level=logging.DEBUG)
 
-logging.info('Starting cartracker')
+logging.info('Starting nap_connect.py')
 logging.info('INFO MODE')
 logging.debug('DEBUG MODE')
 
 logging.info('About to connect from %s to %s' % (my_mac, nap_mac))
 
-
-## Need to convert colon delimited mac to dbus/bluez/weird format (dev_blah:etc:foo:bar)
-
 bus = dbus.SystemBus()
 manager = dbus.Interface(bus.get_object("org.bluez", "/"), "org.bluez.Manager")
 adapter = dbus.Interface(bus.get_object("org.bluez", manager.DefaultAdapter()), "org.bluez.Adapter")
 
-print adapter
+logging.debug("Connecting to " + adapter.FindDevice(nap_mac))
 
-print ###########
-print nap_mac
-nap_mac = string.replace(nap_mac,":","_")
-print nap_mac
-
-## Take the 
-network = dbus.Interface(bus.get_object("org.bluez", sys.argv[1]), "org.bluez.Network")
+network = dbus.Interface(bus.get_object("org.bluez", adapter.FindDevice(nap_mac)), "org.bluez.Network")
 
 print "About to try connecting"
 network.Connect("NAP")
