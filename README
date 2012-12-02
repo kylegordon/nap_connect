@@ -6,6 +6,8 @@ This script will attempt to set up a BNEP network connection over bluetooth from
 
 It's very similar to what Network Manager does when you request a mobile broadband connection over bluetooth, except this doesn't need Network Manager, and is a lot less clever.
 
+First pair your client with the NAP device with ./simple-agent hci0 XX:XX:XX:XX:XX:XX
+
 Enter your local Bluetooth MAC address in nap_connect.cfg as my_mac, and the destination Network Access Point MAC address as nap_mac
 
 Execute ./nap_connect.py
