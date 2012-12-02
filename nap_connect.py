@@ -41,7 +41,20 @@ logging.debug("Connecting to " + adapter.FindDevice(nap_mac))
 network = dbus.Interface(bus.get_object("org.bluez", adapter.FindDevice(nap_mac)), "org.bluez.Network")
 
 print "About to try connecting"
-network.Connect("NAP")
-print "Networking established."
-time.sleep(60)
+bt_device = network.Connect("NAP")
+print "Networking established - using " + bt_device
+time.sleep(1)
+print "Calling dhclient on " + bt_device
+
+from subprocess import call
+call(["dhclient", bt_device])
+
+try:
+        time.sleep(60)
+        print "Timeout passed. Terminating connection"
+except:
+        pass
+	print "Manually terminated"
+
 network.Disconnect()
+
